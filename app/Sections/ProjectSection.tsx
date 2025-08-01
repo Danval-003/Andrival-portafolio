@@ -22,7 +22,10 @@ const ProjectsSection: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const placeholder = "/assets/common/placeholder.png";
+  const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+  const repoName = "Andrival-portafolio";
+  const basePath = isGithubActions ? `/${repoName}` : "";
+  const placeholder = `${basePath}/assets/common/placeholder.png`;
 
   // Despues de que la ventana tenga cierto limite de tamaño, renderizamos 3, 2 o 1 carta
   const visibleCount = size.width > 1200 ? 3 : size.width > 800 ? 2 : 1;
