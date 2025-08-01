@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+const repoName = "Andrival-portafolio";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  output: "export",
+  // Prefijo para las rutas internas
+  basePath: isGithubActions ? `/${repoName}` : "",
+  // Prefijo para los assets estáticos
+  assetPrefix: isGithubActions ? `/${repoName}/` : "",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
