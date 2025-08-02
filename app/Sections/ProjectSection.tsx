@@ -2,6 +2,7 @@
 import CardCarousel3D from "@/components/Carrousel3D";
 import { ProjectCard, ProjectCardProps } from "@/components/Card";
 import { useEffect, useState } from "react";
+import obtainAssetUrl from "@/utils/formatAssets";
 
 const ProjectsSection: React.FC = () => {
   // Use window to get the width and height of the viewport
@@ -22,10 +23,7 @@ const ProjectsSection: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const isGithubActions = process.env.GITHUB_ACTIONS === "true";
-  const repoName = "Andrival-portafolio";
-  const basePath = isGithubActions ? `/${repoName}` : "";
-  const placeholder = `${basePath}/assets/common/placeholder.png`;
+  const placeholder = obtainAssetUrl("/assets/common/placeholder.png");
 
   // Despues de que la ventana tenga cierto limite de tamaño, renderizamos 3, 2 o 1 carta
   const visibleCount = size.width > 1200 ? 3 : size.width > 800 ? 2 : 1;
